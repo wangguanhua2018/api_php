@@ -50,7 +50,7 @@ class SiteController extends CommonController
      */
     public function actionIndex()
     {  
-        ///test git
+        ///test git gitgitttttttttt
        // var_dump(\Yii::$app->db->getDriverName());die();
         //$a = (new Rbac())->test();
         //$a = \Yii::$app->authManager->getPermissionsByRole('test');
