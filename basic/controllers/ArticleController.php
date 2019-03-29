@@ -2,18 +2,17 @@
 namespace app\controllers;
 
 use Yii;
-use app\components\CommonController;
 use app\components\AuthController;
 use app\components\Errors;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
 
-class ArticleController extends CommonController
+class ArticleController extends AuthController
 {
     // 定义模型
     public $modelClass = 'app\models\UploadForm';
     /**
-     * 后台用户登录
+     * 发布文章中上传文章中的图片
      */
     public function actionUpload()
     {

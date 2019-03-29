@@ -49,4 +49,12 @@ return
             'POST,OPTIONS upload' => 'upload'
         ],
     ],
+    [
+        'class' => 'yii\rest\UrlRule',
+        'controller' => 'tag',
+        'extraPatterns' => [
+            'POST,OPTIONS update' => 'edit',
+            'DELETE,OPTIONS delete' => 'del',
+        ],
+    ],
 ];
