@@ -13,7 +13,7 @@ use app\components\Errors;
  * @property mixed $create_time
  * @property mixed $update_time
  */
-class BlogTag extends \yii\mongodb\ActiveRecord
+class BlogTag extends MongodbModel
 {
     const SCENARIO_UPDATE = 'update';
     /**
@@ -83,20 +83,6 @@ class BlogTag extends \yii\mongodb\ActiveRecord
         ];
     }
     /**
-     * 新增或者编辑文章标签
-     * @param array $params 标签信息
-     * @param object $model 标签模型
-     */
-    public function updateTags($params, $model)
-    {
-        $model->load($params, '');
-        if (!$model->save()) {
-            return [false, Errors::ERROR_CODE_SAVE_FAIL, (new Model())->getModelError($model)];
-        }
-
-        return [true, Errors::ERROR_CODE_OK, Errors::ERROR_MESSAGE_OK];
-    }
-    /**
      * 获取文章标签列表
      */
     public function getListData($params)
@@ -120,34 +106,5 @@ class BlogTag extends \yii\mongodb\ActiveRecord
             $result['list'][$key]['_id'] = (string) $result['list'][$key]['_id'];
         }
         return $result;
-    }
-    /**
-     *  删除标签
-     */
-    public static function delTag($params)
-    {
-        if (!isset($params['id']) || empty($params['id'])) {
-            return [false,
-                Errors::ERROR_CODE_PARAMES_INCORECT,
-                Errors::ERROR_MESSAGE_PARAMES_INCORECT
-            ];
-        }
-
-        // 查找对应的模型
-        $model  = static::find()->where(['_id' => $params['id']])->one();
-        if (empty($model)) {
-            return [false,
-                Errors::ERROR_CODE_DATA_NOT_EXIST,
-                Errors::ERROR_MESSAGE_DATA_NOT_EXIST
-            ];
-        }
-
-        // 删除对应的标签
-        $model->delete();
-
-        return [true,
-            Errors::ERROR_CODE_OK,
-            Errors::ERROR_MESSAGE_OK
-        ];
     }
 }

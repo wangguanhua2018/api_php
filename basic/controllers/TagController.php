@@ -39,10 +39,11 @@ class TagController extends AuthController
         // 获取客户端参数信息
         $params = $this->params;
 
-        // 实例化模型
+        // 实例化模型:
+
         $model  = new BlogTag();
         // 存取权限数据
-        list ($result, $code, $message) = $model->updateTags($params, $model);
+        list ($result, $code, $message) = $model->updateModel($params, $model);
 
         // 返回存取结果
         return $this->generateResponseCheck($code, $message);
@@ -63,7 +64,7 @@ class TagController extends AuthController
         $model  = BlogTag::find()->where(['_id' => $params['id']])->one();
 
         // 存取权限数据
-        list ($result, $code, $message) = $model->updateTags($params, $model);
+        list ($result, $code, $message) = $model->updateModel($params, $model);
 
         // 返回存取结果
         return $this->generateResponseCheck($code, $message);
@@ -77,7 +78,7 @@ class TagController extends AuthController
         $params = $this->params;
 
         // 删除指定的标签
-        list ($result, $code, $message) = BlogTag::delTag($params);
+        list ($result, $code, $message) = (new BlogTag())->delModel($params);
 
         return $this->generateResponseCheck($code, $message);
     }

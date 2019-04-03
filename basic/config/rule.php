@@ -46,7 +46,9 @@ return
         'class' => 'yii\rest\UrlRule', 
         'controller' => 'article',
         'extraPatterns' => [
-            'POST,OPTIONS upload' => 'upload'
+            'POST,OPTIONS upload' => 'upload',
+            'POST,OPTIONS update' => 'edit',
+            'DELETE,OPTIONS delete' => 'del',
         ],
     ],
     [
